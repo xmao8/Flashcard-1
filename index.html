@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conversation Flashcards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f5f5f5;
+    }
+    .flashcard {
+      width: 300px;
+      height: 200px;
+      margin: auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 20px;
+      transition: transform 0.5s;
+    }
+    .flashcard:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Conversation Flashcards</h1>
+  <div class="flashcard" onclick="flipCard()">
+    <span id="card-text">Click to start</span>
+  </div>
+  <br>
+  <button onclick="nextCard()">Next</button>
+
+  <script>
+    const flashcards = [
+      { question: "How are you today?", answer: "I’m doing well, thank you. And you?" },
+      { question: "What do you do for a living?", answer: "I’m a teacher. I work at a local high school." },
+      { question: "Where are you from?", answer: "I’m from Brazil. I moved here 2 years ago." },
+      { question: "Do you like living here?", answer: "Yes, it’s a nice place and people are friendly." },
+      { question: "What do you do in your free time?", answer: "I enjoy reading and going for walks." }
+    ];
+
+    let current = 0;
+    let showingQuestion = true;
+
+    function showCard() {
+      document.getElementById("card-text").textContent = flashcards[current].question;
+      showingQuestion = true;
+    }
+
+    function flipCard() {
+      const card = document.getElementById("card-text");
+      if (showingQuestion) {
+        card.textContent = flashcards[current].answer;
+      } else {
+        card.textContent = flashcards[current].question;
+      }
+      showingQuestion = !showingQuestion;
+    }
+
+    function nextCard() {
+      current = (current + 1) % flashcards.length;
+      showCard();
+    }
+
+    showCard();
+  </script>
+
+</body>
+</html>
